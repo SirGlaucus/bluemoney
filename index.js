@@ -5,7 +5,7 @@ const argumentos = process.argv
 const nombreArchivo = argumentos[2]
 const extencion = argumentos[3]
 const indicadorEconomico = argumentos[4]
-const valor = argumentos[5]
+const cantidadCambio = argumentos[5]
 
 const https = require('https');
 https
@@ -16,11 +16,16 @@ https
         });
         resp.on("end", () => {
             let indicador = JSON.parse(data);
-            console.log(indicador[indicadorEconomico])
-            const mensaje = 'asdsadasdasd'
-            console.log('El valor actual del dolar es $' + indicador[indicadorEconomico].valor);
-            fs.writeFile(`${nombreArchivo}.${extencion}`, mensaje, 'utf8', () => {
+            const total = (indicador[indicadorEconomico].valor * cantidadCambio).toFixed(2)
 
+            const mensaje = 
+            `A la fecha: ${indicador[indicadorEconomico].fecha}
+            Fue realizada cotización con los siguientes datos:
+            Cantidad de pesos a convertir: ${cantidadCambio} pesos
+            Convertido a "${indicador[indicadorEconomico].nombre}" da un total de:
+            ${total}` 
+
+            fs.writeFile(`${nombreArchivo}.${extencion}`, mensaje, 'utf8', () => {
             });
         });
     })
