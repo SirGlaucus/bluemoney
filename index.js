@@ -1,4 +1,5 @@
 const fs = require('fs')
+const https = require('https');
 
 const argumentos = process.argv
 
@@ -7,7 +8,6 @@ const extencion = argumentos[3]
 const indicadorEconomico = argumentos[4]
 const cantidadCambio = argumentos[5]
 
-const https = require('https');
 https
     .get('https://mindicador.cl/api', (resp) => {
         let data = '';
@@ -19,14 +19,11 @@ https
             const total = (indicador[indicadorEconomico].valor * cantidadCambio).toFixed(2)
 
             const mensaje = 
-            `A la fecha: ${indicador[indicadorEconomico].fecha}
-            Fue realizada cotización con los siguientes datos:
-            Cantidad de pesos a convertir: ${cantidadCambio} pesos
-            Convertido a "${indicador[indicadorEconomico].nombre}" da un total de:
-            ${total}` 
+            `A la fecha: ${indicador[indicadorEconomico].fecha}.\nFue realizada cotización con los siguientes datos:\nCantidad de pesos a convertir: ${cantidadCambio} pesos\nConvertido a "${indicador[indicadorEconomico].nombre}" da un total de:\n${total}` 
 
             fs.writeFile(`${nombreArchivo}.${extencion}`, mensaje, 'utf8', () => {
             });
+            console.log(mensaje)
         });
     })
     .on('error', (err) => {

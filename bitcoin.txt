@@ -1,0 +1,5 @@
+A la fecha: 2022-04-03T04:00:00.000Z.
+Fue realizada cotización con los siguientes datos:
+Cantidad de pesos a convertir: 50000 pesos
+Convertido a "Bitcoin" da un total de:
+2321276000.00

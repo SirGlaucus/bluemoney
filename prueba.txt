@@ -1,5 +1,0 @@
-A la fecha: 2022-04-03T04:00:00.000Z
-            Fue realizada cotización con los siguientes datos:
-            Cantidad de pesos a convertir: 10000 pesos
-            Convertido a "Bitcoin" da un total de:
-            464255199.99999994
